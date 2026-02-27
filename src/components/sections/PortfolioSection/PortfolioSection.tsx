@@ -1,9 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { projects } from '@/data/projects'
+import { getAllProjects } from '@/lib/getProjects'
 import styles from './PortfolioSection.module.css'
 
 export default function PortfolioSection() {
+  const projects = getAllProjects()
+
   return (
     <section id="portfolio" className={styles.section}>
       <div className={styles.container}>
@@ -22,7 +24,7 @@ export default function PortfolioSection() {
             >
               <div className={styles.imageWrapper}>
                 <Image
-                  src={project.image}
+                  src={project.thumbnail}
                   alt={project.title}
                   fill
                   sizes="(max-width: 768px) 50vw, 33vw"

@@ -1,11 +1,10 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { ArrowLeft } from 'lucide-react'
-import { projectsMap } from '@/data/projects'
+import { getProject } from '@/lib/getProjects'
 import styles from './ProjectDetailPage.module.css'
 
 export default function ProjectDetailPage({ id }: { id: string }) {
-  const project = projectsMap[id]
+  const project = getProject(id)
 
   if (!project) {
     return (
@@ -51,13 +50,13 @@ export default function ProjectDetailPage({ id }: { id: string }) {
       {/* ─── Image gallery ─── */}
       <section className={styles.gallery}>
         <div className={styles.galleryInner}>
-          {project.images.map((img, i) => (
+          {project.images.map((src, i) => (
             <div key={i} className={styles.galleryItem}>
-              <Image
-                src={img}
+              <img
+                src={src}
                 alt={`${project.title} — view ${i + 1}`}
-                sizes="(max-width: 768px) 100vw, 1024px"
-                style={{ width: '100%', height: 'auto' }}
+                loading="lazy"
+                style={{ width: '100%', height: 'auto', display: 'block' }}
               />
             </div>
           ))}
