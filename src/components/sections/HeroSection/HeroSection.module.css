@@ -186,7 +186,7 @@
   height: 4rem;
   border-bottom: 2px solid var(--primary);
   border-left: 2px solid var(--primary);
-  pointer-events: none;
+  
 }
 
 .photoWrapper {
